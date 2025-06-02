@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1748826992 source:c:\users\fogon\onedrive\desktop\fer\universidad\proyectoscodeblocks\quicksort\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1748885359 source:c:\users\fogon\onedrive\desktop\fer\universidad\proyectoscodeblocks\quicksort secuencial\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1748885416 source:c:\users\fogon\onedrive\desktop\fer\universidad\proyectoscodeblocks\quicksort concurrente\main.c
+	<stdio.h>
+	<stdlib.h>
+	<pthread.h>
+	<time.h>
+
