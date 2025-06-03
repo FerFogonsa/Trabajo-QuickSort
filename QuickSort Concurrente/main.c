@@ -65,49 +65,47 @@ int main() {
 
     srand(time(NULL));              // Inicializamos la semilla para rand()
 
-    for (int i=0 ; i<TAM ; i++){ // Llenamos el arreglo con números aleatorios
-        arr[i] = rand() % 1000000;
+    for (int i=0 ; i<TAM ; i++){  // Recorremos el arreglo
+        arr[i] = rand() % 1000000;    // Asignamos un numero aleatorio entre 0 y 999999
     }
 
-    clock_t inicio = clock();       // Medimos el tiempo de inicio
+    clock_t inicio = clock();       // Capturamos el tiempo actual antes de comenzar a ordenar
 
-    int pi = partition(arr, 0, TAM - 1); // Particionamos el arreglo una vez en el main
+    int pi = partition(arr, 0, TAM - 1); // Particionamos el arreglo una vez en el main y obtenemos el índice del pivote
 
     pthread_t thread1, thread2;     // Declaramos dos threads
 
-    // Creamos los argumentos para el primer thread
-    QuickSortArgs* args1 = malloc(sizeof(QuickSortArgs));
-    args1->arr = arr;
-    args1->low = 0;
-    args1->high = pi - 1;
+    QuickSortArgs* args1 = malloc(sizeof(QuickSortArgs));    // Reservamos memoria para los argumentos del primer thread
+    args1->arr = arr;        // Asignamos el arreglo
+    args1->low = 0;          // Índice inicial para la primera mitad
+    args1->high = pi - 1;    // Índice final de la primera mitad
 
-    // Creamos los argumentos para el segundo thread
-    QuickSortArgs* args2 = malloc(sizeof(QuickSortArgs));
-    args2->arr = arr;
-    args2->low = pi + 1;
-    args2->high = TAM - 1;
+    QuickSortArgs* args2 = malloc(sizeof(QuickSortArgs)); // Reservamos memoria para los argumentos del segundo hilo
+    args2->arr = arr;        // Asignamos el arreglo
+    args2->low = pi + 1;     // Índice inicial de la segunda mitad
+    args2->high = TAM - 1;   // Índice final del arreglo
 
-    // Creamos los threads para ordenar ambas mitades del arreglo
-    pthread_create(&thread1, NULL, quickSortThread, (void*)args1);
-    pthread_create(&thread2, NULL, quickSortThread, (void*)args2);
+    
+    pthread_create(&thread1, NULL, quickSortThread, (void*)args1); // Iniciamos el primer hilo para ordenar la primera mitad
+    pthread_create(&thread2, NULL, quickSortThread, (void*)args2); // Iniciamos el segundo hilo para ordenar la segunda mitad
 
-    // Esperamos a que ambos threads terminen su ejecución
-    pthread_join(thread1, NULL);
-    pthread_join(thread2, NULL);
+    
+    pthread_join(thread1, NULL);    // Esperamos que el primer hilo finalice
+    pthread_join(thread2, NULL);    // Esperamos que el segundo hilo finalice
 
-    clock_t fin = clock();          // Tiempo de fin
+    clock_t fin = clock();          // Capturamos el tiempo tras finalizar la ejecución
 
     double tiempo = (double)(fin - inicio) / CLOCKS_PER_SEC; // Calculamos el tiempo en segundos
 
-    // Mostramos el tiempo de ejecución
-    printf("Tiempo de ejecución (concurrente): %f segundos\n", tiempo);
+    
+    printf("Tiempo de ejecución (concurrente): %f segundos\n", tiempo);    // Mostramos el tiempo de ejecución
 
     // (Opcional) Mostrar el arreglo ordenado
     /*
     for (int i = 0; i < TAM; i++) {
-        printf("%d ", arr[i]);
+        printf("%d ", arr[i]);    //Imprimimos cada elemento ordenado
     }
     */
 
-    return 0;
+    return 0;    //Fin del programa
 }
