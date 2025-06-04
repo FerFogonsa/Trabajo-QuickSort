@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define TAM 500000  // Tamaño grande para evaluar rendimiento
+#define TAM 500000  // Tamaño del arreglo
 
 // Prototipo de la función swap que se usará para intercambiar dos valores
 void swap(int* a, int* b);
