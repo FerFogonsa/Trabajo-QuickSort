@@ -62,7 +62,7 @@ int main(){
     // Inicializamos la semilla para números aleatorios
     srand(time(NULL));
 
-    // Llenamos el arreglo con números aleatorios
+    // Llenamos el arreglo con números aleatorios de 0 a 999999
     for(int i=0; i<TAM; i++){
         arr[i] = rand() % 1000000;
     }
