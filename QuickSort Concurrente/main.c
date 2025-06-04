@@ -3,7 +3,7 @@
 #include <pthread.h>    // Para usar threads
 #include <time.h>       // Para medir el tiempo con clock()
 
-#define TAM 500000    // Tamaño del arreglo grande
+#define TAM 500000    // Tamaño del arreglo
 
 // Estructura para pasar los argumentos a cada thread
 typedef struct {
